@@ -2002,6 +2002,7 @@ def try_blas_flag(flags):
     if res and res[0] and res[1]:
         return " ".join(flags)
     else:
+        _logger.debug("Test compilation with flags '%s' resulted in\n%s", cflags, res)
         return ""
 
 
@@ -2787,8 +2788,7 @@ def default_blas_ldflags():
             _logger.debug("The following blas flags will be used: '%s'", res)
             return res
         else:
-            _logger.debug(f"Supplied flags {res} failed to compile")
-            _logger.debug("Supplied flags '%s' failed to compile", res)
+            _logger.debug("Supplied flags '%s' failed to compile", flags)
             raise RuntimeError(f"Supplied flags {flags} failed to compile")
 
     # If no compiler is available we default to empty ldflags
